@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+extraProperties=sonar.jdbc.driver\=com.mysql.jdbc.Driver\r\nsonar.host.url\=http\://ec2-54-218-89-26.us-west-2.compute.amazonaws.com\:9000\r\nsonar.jdbc.password\=sonar\r\nsonar.jdbc.url\=jdbc\:mysql\://ec2-54-218-89-26.us-west-2.compute.amazonaws.com\:3306/sonar\r\nsonar.jdbc.username\=sonar
+projectKey=Proyecto_Restaurante\:Proyecto_Restaurante
+serverUrl=http\://localhost\:9000
+version=2

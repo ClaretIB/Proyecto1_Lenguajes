@@ -1,0 +1,51 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+ 
+	<context:component-scan base-package="Controller" />
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/Pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!--  Conexion con DB  -->
+	
+	<bean id="clienteDao" class="DataAccess.ClienteDaoMySql">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="productoDao" class="DataAccess.ProductoDaoMySql">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="platoDao" class="DataAccess.PlatoDaoMySql">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="platoClienteDao" class="DataAccess.PlatoClienteDaoMySql">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+	
+	<mvc:resources mapping="/Resources/**" location="/Resources/" />
+	<mvc:annotation-driven />
+
+	<context:property-placeholder location="WEB-INF/classes/jdbc.properties"/>
+ 
+</beans>
